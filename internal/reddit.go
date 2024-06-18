@@ -13,7 +13,7 @@ import (
 
 func FetchRedditPost(subreddit string, c chan *RedditFetchResult) {
 	defer close(c)
-	resp, err := http.Get(fmt.Sprintf("https://www.reddit.com/r/%s.json", subreddit))
+	resp, err := http.Get(fmt.Sprintf("https://www.reddit.com/r/%s/top.json?t=day", subreddit))
 
 	if err != nil {
 		c <- &RedditFetchResult{Error: fmt.Errorf("HTTP GET failed: %v", err)}
